@@ -14,6 +14,15 @@ export default (state, action) => {
       //ne mozemo samo contacts.push jer je state nepromenljiv moramo da zalepimo sve prethodno pa da dodamo
       return { ...state, contacts: [...state.contacts, action.payload] };
 
+    case UPDATE_CONTACT:
+      return {
+        ...state,
+        //ako je id u nizu kontakta jednak prosledjenom kontaktu ubaci prosledjen umesto njega
+        contacts: state.contacts.map((contact) =>
+          contact.id === action.payload.id ? action.payload : contact
+        ),
+      };
+
     case DELETE_CONTACT:
       return {
         ...state,
