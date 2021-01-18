@@ -13,6 +13,14 @@ export default (state, action) => {
     case ADD_CONTACT:
       //ne mozemo samo contacts.push jer je state nepromenljiv moramo da zalepimo sve prethodno pa da dodamo
       return { ...state, contacts: [...state.contacts, action.payload] };
+
+    case DELETE_CONTACT:
+      return {
+        ...state,
+        contacts: state.contacts.filter(
+          (contact) => contact.id != action.payload
+        ),
+      };
     default:
       return state;
   }
