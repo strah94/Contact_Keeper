@@ -31,7 +31,7 @@ const AuthState = (props) => {
 
   //Logout
 
-  //Cleaer Errors
+  //Clear Errors
 
   return (
     <AuthContext.Provider
