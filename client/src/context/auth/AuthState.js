@@ -68,10 +68,34 @@ const AuthState = (props) => {
   };
 
   // Login User
-  const login = () => console.log('Login');
+  const login = async (formData) => {
+    const config = {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+
+    try {
+      //we added proxy value so we dont need to write localhost:5000/api/users
+      const res = await axios.post('/api/auth', formData, config);
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+
+      loadUser();
+    } catch (err) {
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: err.response.data.msg,
+      });
+    }
+  };
 
   //Logout
-  const logout = () => console.log('Logout');
+  const logout = () => {
+    dispatch({ type: LOGOUT });
+  };
 
   //Clear Errors
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
