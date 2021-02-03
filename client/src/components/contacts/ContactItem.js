@@ -8,10 +8,10 @@ const ContactItem = ({ contact }) => {
   //Getting deleteContact metod from contactContext
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
 
   const onDelete = () => {
-    deleteContact(id);
+    deleteContact(_id);
 
     //Clearing the current contact in form
     clearCurrent();
