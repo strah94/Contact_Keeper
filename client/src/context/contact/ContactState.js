@@ -85,6 +85,35 @@ const ContactState = (props) => {
     }
   };
 
+  //Update Contact
+
+  const updateContact = async (contact) => {
+    const config = {
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+
+    try {
+      // we are not sending the token in the header here because we defined it globally in setAuthToken
+      const res = await axios.put(
+        `/api/contacts/${contact._id}`,
+        contact,
+        config
+      );
+
+      dispatch({
+        type: UPDATE_CONTACT,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: CONTACT_ERROR,
+        payload: err.response.msg,
+      });
+    }
+  };
+
   //Clear Contacts
   const clearContacts = () => {
     dispatch({
@@ -104,15 +133,6 @@ const ContactState = (props) => {
   const clearCurrent = () => {
     dispatch({
       type: CLEAR_CURRENT,
-    });
-  };
-
-  //Update Contact
-
-  const updateContact = (contact) => {
-    dispatch({
-      type: UPDATE_CONTACT,
-      payload: contact,
     });
   };
 

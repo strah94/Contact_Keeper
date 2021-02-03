@@ -28,7 +28,7 @@ export default (state, action) => {
         ...state,
         //ako je id u nizu kontakta jednak prosledjenom kontaktu ubaci prosledjen umesto njega
         contacts: state.contacts.map((contact) =>
-          contact.id === action.payload.id ? action.payload : contact
+          contact._id === action.payload._id ? action.payload : contact
         ),
         loading: false,
       };
